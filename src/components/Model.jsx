@@ -1,26 +1,25 @@
-import { forwardRef, useImperativeHandle, useRef } from "react"
-import { createPortal } from "react-dom"
+import { forwardRef, useImperativeHandle, useRef } from "react";
+import { createPortal } from "react-dom";
 import Button from "./Button";
 
 const Model = forwardRef(function Model({ children, btnCaption }, ref) {
-    const dialog = useRef();
-    useImperativeHandle(ref, () => {
-        return {
-            open() {
-                dialog.current.showModal();
-            }
-        }
-    })
-    return createPortal(
-        <dialog ref={dialog} className="backdrop:bg-stone-900/90 p-4 rounded-md">
-            {children}
-            <form method="dialog" className="mt-4 text-right">
-                <Button>
-                    {btnCaption}
-                </Button>
-            </form>
-        </dialog>,
-        document.getElementById('modal-root'))
+  const dialog = useRef();
+  useImperativeHandle(ref, () => {
+    return {
+      open() {
+        dialog.current.showModal();
+      },
+    };
+  });
+  return createPortal(
+    <dialog ref={dialog} className="backdrop:bg-stone-900/90 p-4 rounded-md">
+      {children}
+      <form method="dialog" className="mt-4 text-right">
+        <Button>{btnCaption}</Button>
+      </form>
+    </dialog>,
+    document.getElementById("modal-root")
+  );
 });
 
-export default Model
+export default Model;
