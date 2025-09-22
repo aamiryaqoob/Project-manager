@@ -7,5 +7,4 @@ export default function Button({ children, ...props }) {
       {children}
     </button>
   );
-  
 }
